@@ -1,72 +1,77 @@
-import React, { useState, useEffect } from "react";
-import moment from "moment";
+import { useEffect, useState } from "react";
 
-const Timer = () => {
-  const [time, setTime] = useState(moment().format("hh:mm:ss A"));
-  const [date, setDate] = useState(moment().format("MMMM D, YYYY"));
-  const [secondsDeg, setSecondsDeg] = useState(0);
-  const [minutesDeg, setMinutesDeg] = useState(0);
-  const [hoursDeg, setHoursDeg] = useState(0);
+export default function DigitalClock() {
+  const [time, setTime] = useState({
+    hours: "00",
+    minutes: "00",
+    seconds: "00",
+    format: "AM",
+    day: 0,
+    date: "",
+  });
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const now = moment();
-      setTime(now.format("hh:mm:ss A"));
-      setDate(now.format("MMMM D, YYYY"));
+    const updateClock = () => {
+      let date = new Date();
+      let day = date.getDay();
+      let hours = date.getHours();
+      let minutes = date.getMinutes();
+      let seconds = date.getSeconds();
+      let timeFormat = hours >= 12 ? "PM" : "AM";
 
-      const secDeg = (now.seconds() / 60) * 360;
-      const minDeg = (now.minutes() / 60) * 360;
-      const hrDeg = ((now.hours() % 12) / 12) * 360;
+      hours = hours === 0 ? 12 : hours > 12 ? hours - 12 : hours;
+      const formattedDate = date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+      const formattedTime = {
+        hours: hours < 10 ? "0" + hours : hours.toString(),
+        minutes: minutes < 10 ? "0" + minutes : minutes.toString(),
+        seconds: seconds < 10 ? "0" + seconds : seconds.toString(),
+        format: timeFormat,
+        day,
+        date: formattedDate,
+      };
 
-      setSecondsDeg(secDeg);
-      setMinutesDeg(minDeg);
-      setHoursDeg(hrDeg);
-    }, 1000);
+      setTime(formattedTime);
+    };
 
+    const interval = setInterval(updateClock, 1000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="container">
-      <div className="clock">
-        <label style={{ "--i": 1 }}><span>1</span></label>
-        <label style={{ "--i": 2 }}><span>2</span></label>
-        <label style={{ "--i": 3 }}><span>3</span></label>
-        <label style={{ "--i": 4 }}><span>4</span></label>
-        <label style={{ "--i": 5 }}><span>5</span></label>
-        <label style={{ "--i": 6 }}><span>6</span></label>
-        <label style={{ "--i": 7 }}><span>7</span></label>
-        <label style={{ "--i": 8 }}><span>8</span></label>
-        <label style={{ "--i": 9 }}><span>9</span></label>
-        <label style={{ "--i": 10 }}><span>10</span></label>
-        <label style={{ "--i": 11 }}><span>11</span></label>
-        <label style={{ "--i": 12 }}><span>12</span></label>
-
-        <div className="indicator">
-          <span
-            className="hand hour"
-            style={{ transform: `rotate(${hoursDeg}deg)` }}
-          />
-          <span
-            className="hand minute"
-            style={{ transform: `rotate(${minutesDeg}deg)` }}
-          />
-          <span
-            className="hand second"
-            style={{ transform: `rotate(${secondsDeg}deg)` }}
-          />
+    <section className="clock d-flex justify-content-start align-items-center vh-100">
+      <div className="display shadow p-4 text-center">
+        <div className="weekdays d-flex justify-content-center gap-2 mb-3">
+          {["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"].map(
+            (day, index) => (
+              <span
+                key={index}
+                className={
+                  index === time.day ? "fw-bold text-primary" : "text-secondary"
+                }
+              >
+                {day}
+              </span>
+            )
+          )}
         </div>
-      </div>
-      <div className="date">
-        <h1>{time}</h1>
-        <h1>{moment().format("dddd").toUpperCase()}</h1>
-        <div className="month-day">
-          <h2>{moment().format("MMM").toUpperCase()}</h2>
-          <h2>{moment().format("DD")}</h2>
+        <div className="timeDisplay display-1 fw-bold">
+          <div className="time">
+            {time.hours}
+            <span className="dot">:</span>
+            {time.minutes}
+            <span className="dot">:</span>
+            {time.seconds}
+          </div>
+          <div className="format fs-4 text-uppercase">{time.format}</div>
+        </div>
+        <div className="date-display text-center fw-bold text-danger fs-1">
+          {time.date}
         </div>
       </div>
     </section>
   );
-};
-
-export default Timer;
+}

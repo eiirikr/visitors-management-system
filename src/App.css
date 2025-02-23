@@ -1,3 +1,152 @@
+.navbar {
+  z-index: 100;
+}
+
 .logo {
   border-radius: 50%;
+}
+
+.text-logo {
+  max-width: 203px;
+  word-break: break-word;
+}
+
+.clock {
+  width: 520px;
+  padding: 10%;
+  border-radius: 8px;
+}
+
+.clock .display {
+  padding: 40px 10px 10px;
+  border-radius: 6px;
+  background-color: #dddddd;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08) inset, 0 1px 1px #fafafa;
+  position: relative;
+}
+
+.clock .display .weekdays {
+  font-size: 18px;
+  font-weight: 600;
+  width: 100%;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  text-align: center;
+  font-family: "Text Me One", sans-serif;
+}
+
+.weekdays span {
+  padding: 0 10px;
+}
+
+.display .timeDisplay {
+  display: flex;
+  justify-content: center;
+}
+
+.timeDisplay .time {
+  font-size: 80px;
+  display: flex;
+  justify-content: center;
+  letter-spacing: 3px;
+  font-family: "Digital-7 Mono", sans-serif;
+  margin-top: 10px;
+}
+
+.timeDisplay .format {
+  font-size: 30px;
+  margin-top: 50px;
+  margin-left: 10px;
+  font-family: "Text Me One", sans-serif;
+}
+
+.time .dot {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  25% {
+    opacity: 0;
+  }
+}
+
+/* Attendance Form */
+.attendance-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  min-height: 50vh;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.table th {
+  background: #f4f4f4;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-success {
+  background: #28a745;
+  color: white;
+}
+
+.btn-danger {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-sm {
+  font-size: 12px;
+  padding: 5px 8px;
 }

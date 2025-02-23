@@ -3,7 +3,10 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 
 const NavigationBar = () => {
   return (
-    <Navbar expand="lg" className="navbar navbar-dark bg-primary shadow-sm">
+    <Navbar
+      expand="lg"
+      className="navbar navbar-dark bg-primary shadow-sm position-fixed top-0 w-100"
+    >
       <Container>
         <Nav className="d-flex flex-row align-items-center">
           <Navbar.Brand>
@@ -15,16 +18,12 @@ const NavigationBar = () => {
           </Navbar.Brand>
           <Navbar.Brand
             href="#"
-            className="fs-6 d-none d-lg-block text-wrap  d-block text-center"
-            style={{
-              maxWidth: "203px",
-              wordBreak: "break-word",
-            }}
+            className="text-logo fs-6 d-none d-lg-block text-wrap  d-block text-center"
           >
             DEPARTMENT OF INFORMATION AND COMMUNICATIONS TECHNOLOGY
           </Navbar.Brand>
 
-          <Navbar.Brand href="#" className="fw-bold fs-4 d-lg-none">
+          <Navbar.Brand href="#" className="fw-bold fs-1 d-lg-none">
             DICT
           </Navbar.Brand>
         </Nav>
