@@ -42,9 +42,9 @@ export default function DigitalClock() {
   }, []);
 
   return (
-    <section className="clock d-flex justify-content-start align-items-center vh-100">
+    <section className="timer">
       <div className="display shadow p-4 text-center">
-        <div className="weekdays d-flex justify-content-center gap-2 mb-3">
+        <div className="weekdays d-flex justify-content-center mb-3">
           {["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"].map(
             (day, index) => (
               <span
