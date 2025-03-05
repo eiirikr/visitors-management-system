@@ -5,7 +5,9 @@
 }
 
 .navbar {
-  z-index: 100;
+  z-index: 101;
+  position: fixed;
+  top: 0;
 }
 
 .logo {
@@ -164,82 +166,71 @@
   }
 }
 
-/* Attendance Form */
+/* Ensure container is responsive */
 .attendance-container {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  width: 50%;
-  min-height: 50vh;
-}
-
-.table {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+  max-width: 900px;
+  margin: auto;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.table th,
-.table td {
+/* Table Wrapper (For Scrollable Table) */
+.table-responsive {
+  overflow-x: auto;
+}
+
+/* Scrollable Form Container */
+.form-container {
+  overflow-x: auto;
+  max-width: 100%;
   padding: 10px;
-  border: 1px solid #ddd;
-  text-align: center;
 }
 
-.table th {
-  background: #f4f4f4;
+/* Form Layout */
+.form-container form {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  overflow-x: auto;
 }
 
+/* Modal Overlay */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3); /* Dark overlay */
+  backdrop-filter: blur(8px); /* Blur effect */
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1050;
 }
 
-.modal-content {
-  background: white;
+/* Glassmorphism Effect */
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 12px;
   padding: 20px;
-  border-radius: 8px;
-  width: 400px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: fadeIn 0.3s ease-in-out;
 }
 
-.modal-content input {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.btn {
-  padding: 8px 12px;
-  border: none;
-  border-radius: 5px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.btn-success {
-  background: #28a745;
-  color: white;
-}
-
-.btn-danger {
-  background: #dc3545;
-  color: white;
-}
-
-.btn-sm {
-  font-size: 12px;
-  padding: 5px 8px;
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
